@@ -38,12 +38,9 @@
         methods: {
             changeCity() {
                 console.log(this.prov);
-                //把选项指向到请选择
                 this.city = "";
-                //改省的时候 县区直接清空
                 this.areaList = [];
                 this.area = "";
-
                 axios.get("/area?parentId=" + this.prov)
                     .then(respInfo => {
                         console.log(respInfo);
@@ -53,7 +50,6 @@
             },
             changeArea() {
                 console.log(this.city);
-                //把选项指向到请选择
                 this.area = "";
                 axios.get("/area?parentId=" + this.city)
                     .then(respInfo => {
