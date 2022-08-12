@@ -4,7 +4,7 @@ import com.javasm.demo.basedao.BaseDAO;
 
 import com.javasm.demo.entity.Area;
 import com.javasm.demo.util.DBHelper;
-import org.springframework.jca.cci.connection.ConnectionFactoryUtils;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

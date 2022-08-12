@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/vue.js" type="text/javascript"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.11.0/qs.js"></script>
-    <script src="js/vue.js" type="text/javascript"></script>
+
 </head>
 <body>
 <div id="app">
@@ -36,14 +37,37 @@
         },
         methods: {
             changeCity() {
+                console.log(this.prov);
+                //把选项指向到请选择
                 this.city = "";
-                this.area = "";
+                //改省的时候 县区直接清空
                 this.areaList = [];
-                axios.post("/area?parentId=" + this.prov)
-                    .then(resp => {
-                        console.log(resp);
+                this.area = "";
+
+                axios.get("/area?parentId=" + this.prov)
+                    .then(respInfo => {
+                        console.log(respInfo);
+                        this.cityList = respInfo.data.data;
+                    })
+
+            },
+            changeArea() {
+                console.log(this.city);
+                //把选项指向到请选择
+                this.area = "";
+                axios.get("/area?parentId=" + this.city)
+                    .then(respInfo => {
+                        console.log(respInfo);
+                        this.areaList = respInfo.data.data;
                     })
             }
+        },
+        mounted() {
+            axios.get("/area")
+                .then(respInfo => {
+                    console.log(respInfo);
+                    this.provList = respInfo.data.data;
+                })
         }
 
     });

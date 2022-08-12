@@ -23,6 +23,15 @@ import java.util.List;
 public class AreaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setHeader("Access-Control-Allow-Origin","http://localhost:8100");
+        /* 允许跨域的请求⽅法GET, POST, HEAD 等 */
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+        /* 重新预检验跨域的缓存时间 (s) */
+        resp.setHeader("Access-Control-Max-Age", "3600");
+        /* 允许跨域的请求头 */
+        resp.setHeader("Access-Control-Allow-Headers", "*");
+        /* 是否携带cookie */
+        resp.setHeader("Access-Control-Allow-Credentials", "true");
         req.setCharacterEncoding("UTF-8");
         String parentIdStr = req.getParameter("parentId");
         Integer parentId = 0;
